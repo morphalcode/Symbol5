@@ -314,6 +314,10 @@ class Cell():
 
     def AddToNotAllowedSymbols(self, SymbolToAdd):
         self.__SymbolsNotAllowed.append(SymbolToAdd)
+    
+    def GetNotAllowedSymbols(self):
+        return self.__SymbolsNotAllowed
+
 
     def UpdateCell(self):
         pass
