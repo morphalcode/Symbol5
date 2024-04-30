@@ -101,9 +101,10 @@ class Puzzle():
         except FileNotFoundError:
             print("Puzzle not loaded")
             
-    def __SavePuzzle(self, filename):
+    def __SavePuzzle(self, filename="test"):
         
         with open(f"{filename}.txt","w") as file:
+
             NoOfSymbols = len(self.__AllowedSymbols)
             file.write(f"{NoOfSymbols}\n")
             
@@ -112,16 +113,23 @@ class Puzzle():
                 
             NoOfPatterns = len(self.__AllowedPatterns)
             file.write(f"{NoOfPatterns}\n")
+
+            for pattern in self.__AllowedPatterns:
+                file.write(f"{pattern.GetPatternSequence()}\n")
             
             GridSize = self.__GridSize
             file.write(f"{GridSize}\n")
             
             for cell in self.__Grid:
                 CurrentSymbol = cell.GetSymbol()
+                if CurrentSymbol == "-":
+                    CurrentSymbol = ""
                 NotAllowedSymbols = cell.GetNotAllowedSymbols()
-                
-                
-        
+                file.write(f"{CurrentSymbol},{''.join(NotAllowedSymbols)}\n")
+
+            file.write(f"{self.__Score}\n")
+            file.write(f"{self.__SymbolsLeft}\n")
+            
 
     def AttemptPuzzle(self):
         Finished = False
@@ -131,10 +139,12 @@ class Puzzle():
             self.DisplayPuzzle()
             print("Current score: " + str(self.__Score))
 
-            save_puzzle = input("Do you want to save the puzzle? (Y/N)").upper()
+            save_puzzle = input("Do you want to save the puzzle? (Y/N) ").upper()
             if save_puzzle == "Y":
                 file_name = input("what do you want to save your puzzle as (do not include.txt)")
-                Puzzle.__SavePuzzle(file_name)
+                self.__SavePuzzle(file_name)
+                finished = True
+                break
             else:
                 pass
 
