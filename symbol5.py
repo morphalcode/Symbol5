@@ -7,6 +7,8 @@ import random
 import os
 # import os for file handling stuff???????
 
+hello stefan how are you?
+
 def Main():
     Again = "y"
     Score = 0
