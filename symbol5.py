@@ -102,6 +102,28 @@ class Puzzle():
                 self.__SymbolsLeft = int(f.readline().rstrip())
         except FileNotFoundError:
             print("Puzzle not loaded")
+            
+    def __SavePuzzle(self, filename):
+        
+        with open(f"{filename}.txt","w") as file:
+            NoOfSymbols = len(self.__AllowedSymbols)
+            file.write(f"{NoOfSymbols}\n")
+            
+            for symbol in self.__AllowedSymbols:
+                file.write(f"{symbol}\n")
+                
+            NoOfPatterns = len(self.__AllowedPatterns)
+            file.write(f"{NoOfPatterns}\n")
+            
+            GridSize = self.__GridSize
+            file.write(f"{GridSize}\n")
+            
+            for cell in self.__Grid:
+                CurrentSymbol = cell.GetSymbol()
+                NotAllowedSymbols = cell.GetNotAllowedSymbols()
+                
+                
+        
 
     def AttemptPuzzle(self):
         Finished = False
