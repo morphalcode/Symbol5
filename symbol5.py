@@ -100,33 +100,14 @@ class Puzzle():
                 self.__SymbolsLeft = int(f.readline().rstrip())
         except FileNotFoundError:
             print("Puzzle not loaded")
-            
-    def __SavePuzzle(self, filename):
-        
-        with open(f"{filename}.txt","w") as file:
-            NoOfSymbols = len(self.__AllowedSymbols)
-            file.write(f"{NoOfSymbols}\n")
-            
-            for symbol in self.__AllowedSymbols:
-                file.write(f"{symbol}\n")
-                
-            NoOfPatterns = len(self.__AllowedPatterns)
-            file.write(f"{NoOfPatterns}\n")
-            
-            GridSize = self.__GridSize
-            file.write(f"{GridSize}\n")
-            
-            for cell in self.__Grid:
-                CurrentSymbol = cell.GetSymbol()
-                NotAllowedSymbols = cell.GetNotAllowedSymbols()
-                
-                
-        
 
     def AttemptPuzzle(self):
         Finished = False
         # loop until puzzle is finished
         while not Finished:
+
+            self.DisplayPuzzle()
+            print("Current score: " + str(self.__Score))
 
             save_puzzle = input("Do you want to save the puzzle? (Y/N)").upper()
             if save_puzzle == "Y":
@@ -134,9 +115,7 @@ class Puzzle():
                 Puzzle.__SavePuzzle(file_name)
             else:
                 pass
-
-            self.DisplayPuzzle()
-            print("Current score: " + str(self.__Score))
+            
             Row = -1
             Valid = False
 
@@ -339,7 +318,6 @@ class Cell():
     
     def GetNotAllowedSymbols(self):
         return self.__SymbolsNotAllowed
-
 
     def UpdateCell(self):
         pass
