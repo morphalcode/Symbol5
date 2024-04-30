@@ -7,8 +7,6 @@ import random
 import os
 # import os for file handling stuff???????
 
-hello stefan how are you?
-
 def Main():
     Again = "y"
     Score = 0
@@ -129,6 +127,14 @@ class Puzzle():
         Finished = False
         # loop until puzzle is finished
         while not Finished:
+
+            save_puzzle = input("Do you want to save the puzzle? (Y/N)").upper()
+            if save_puzzle == "Y":
+                file_name = input("what do you want to save your puzzle as (do not include.txt)")
+                Puzzle.__SavePuzzle(file_name)
+            else:
+                pass
+
             self.DisplayPuzzle()
             print("Current score: " + str(self.__Score))
             Row = -1
@@ -330,6 +336,10 @@ class Cell():
 
     def AddToNotAllowedSymbols(self, SymbolToAdd):
         self.__SymbolsNotAllowed.append(SymbolToAdd)
+    
+    def GetNotAllowedSymbols(self):
+        return self.__SymbolsNotAllowed
+
 
     def UpdateCell(self):
         pass
