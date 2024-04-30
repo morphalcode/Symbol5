@@ -120,19 +120,16 @@ class Puzzle():
                 CurrentSymbol = cell.GetSymbol()
                 NotAllowedSymbols = cell.GetNotAllowedSymbols()
                 
-                file.write(f"{CurrentSymbol},{','.join(NotAllowedSymbols)}\n")
                 
-            Score = self.__Score
-            file.write(f"{Score}\n")
-            
-            SymbolsLeft = self.__SymbolsLeft
-            file.write(f"{SymbolsLeft}\n")
-            
-            
+        
+
     def AttemptPuzzle(self):
         Finished = False
         # loop until puzzle is finished
         while not Finished:
+
+            self.DisplayPuzzle()
+            print("Current score: " + str(self.__Score))
 
             save_puzzle = input("Do you want to save the puzzle? (Y/N)").upper()
             if save_puzzle == "Y":
@@ -141,8 +138,6 @@ class Puzzle():
             else:
                 pass
 
-            self.DisplayPuzzle()
-            print("Current score: " + str(self.__Score))
             Row = -1
             Valid = False
 
@@ -209,7 +204,6 @@ class Puzzle():
         # uses try and except if out of bounds
         for StartRow in range(Row + 2, Row - 1, -1):
             for StartColumn in range(Column - 2, Column + 1):
-                print(f"indexing into {StartRow, StartColumn}")
                 try:
 
                     # gets the pattern string for the 3x3 grid that indexing is start from
