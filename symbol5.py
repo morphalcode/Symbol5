@@ -120,9 +120,15 @@ class Puzzle():
                 CurrentSymbol = cell.GetSymbol()
                 NotAllowedSymbols = cell.GetNotAllowedSymbols()
                 
+                file.write(f"{CurrentSymbol},{','.join(NotAllowedSymbols)}\n")
                 
-        
-
+            Score = self.__Score
+            file.write(f"{Score}\n")
+            
+            SymbolsLeft = self.__SymbolsLeft
+            file.write(f"{SymbolsLeft}\n")
+            
+            
     def AttemptPuzzle(self):
         Finished = False
         # loop until puzzle is finished
@@ -339,7 +345,6 @@ class Cell():
     
     def GetNotAllowedSymbols(self):
         return self.__SymbolsNotAllowed
-
 
     def UpdateCell(self):
         pass
