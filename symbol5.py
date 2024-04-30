@@ -115,7 +115,7 @@ class Puzzle():
                 Puzzle.__SavePuzzle(file_name)
             else:
                 pass
-            
+
             Row = -1
             Valid = False
 
@@ -182,7 +182,6 @@ class Puzzle():
         # uses try and except if out of bounds
         for StartRow in range(Row + 2, Row - 1, -1):
             for StartColumn in range(Column - 2, Column + 1):
-                print(f"indexing into {StartRow, StartColumn}")
                 try:
 
                     # gets the pattern string for the 3x3 grid that indexing is start from
